@@ -1,26 +1,16 @@
 import {useNavigate} from "react-router-dom";
 import Cards from "./Cards";
-
-const testArray = [
-    {
-        testId: 1,
-        title: 'title1',
-        description: "description1"
-    },
-    {
-        testId: 2,
-        title: 'title2',
-        description: "description2"
-    },
-    {
-        testId: 3,
-        title: 'title3',
-        description: "description3"
-    }
-]
+import {useEffect, useState} from "react";
+import {getProductsInfo} from "./API/Products";
 
 function MainPage() {
+
     const navigate = useNavigate();
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        getProductsInfo().then(data => setProducts(data))
+    }, [])
 
     function Navigating(title){
         navigate(`/${title}`)
@@ -28,7 +18,7 @@ function MainPage() {
 
   return (
     <div className="MainPage">
-        <Cards cards={testArray} navigating={Navigating}/>
+        <Cards cards={products} navigating={Navigating}/>
     </div>
   );
 }

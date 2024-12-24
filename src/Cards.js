@@ -10,7 +10,7 @@ function Cards({cards, navigating}) {
                 sx={{justifyContent: 'space-around'}}
             >
                 {cards.map(card => (
-                    <Card key={card.testId} sx={{width: 245}}>
+                    <Card key={card.id} sx={{width: 245}}>
                         <CardActionArea onClick={() => navigating(card.title)}>
                             <CardMedia
                                 sx={{height: 140}}
